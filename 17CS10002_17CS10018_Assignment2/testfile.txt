@@ -1,9 +1,0 @@
-HELLO
-This is assignment1
-on the topic
-SOCKET PROGRAMMING
-in
-COMPUTER
-NETWORK
-using UDP protocol
-END
