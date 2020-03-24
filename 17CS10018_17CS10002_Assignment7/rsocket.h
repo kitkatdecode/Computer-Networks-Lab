@@ -1,6 +1,7 @@
 #ifndef _RSOCKET_H
 #define _RSOCKET_H
 
+#include <stdio.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <unistd.h>
@@ -8,6 +9,8 @@
 #define SOCK_MRP 10018
 #define T 2
 #define p 0.05
+#define MAX_MSG_SIZE 100
+#define MAX_TABLE_SIZE 100
 
 int r_socket(int domain, int type, int protocol);
 int r_bind(int sockfd, const struct sockaddr *addr,
