@@ -55,10 +55,10 @@ int main(){
     int msglen = strlen(msg);
     if(msglen>100)
         msglen = 100;
-    sendto(sockid, (const char *)msg[0], strlen(msg[0]), 0,
+    r_sendto(sockid, (const char *)msg[0], strlen(msg[0]), 0,
                     (const struct sockaddr *)&recv_addr, sizeof(recv_addr));
     for(int i=1;i<msglen;i++){
-        sendto(sockid, (const char *)msg[i], strlen(msg[i]), 0,
+        r_sendto(sockid, (const char *)msg[i], strlen(msg[i]), 0,
                     (const struct sockaddr *)&recv_addr, sizeof(recv_addr));
     }
 

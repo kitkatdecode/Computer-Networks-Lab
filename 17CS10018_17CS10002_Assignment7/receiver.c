@@ -36,7 +36,7 @@ int main(){
 
     char buffer;
 
-    while(recvfrom(sockfd, &buffer,1, 0, 
+    while(r_recvfrom(sockfd, &buffer,1, 0, 
                             (const struct sockaddr *) &send_addr, sizeof(send_addr)) == 1)
         printf("%c",buffer);
     r_close(sockfd);
