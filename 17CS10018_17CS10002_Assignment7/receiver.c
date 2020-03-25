@@ -1,5 +1,8 @@
 /* R E C E I V E R */
 
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
 #include <string.h>
 #include "rsocket.h"
 #include <arpa/inet.h>
@@ -10,7 +13,7 @@
 
 int main(){
     int sockfd;
-    struct sockaddr_in sendaddr,recvaddr;
+    struct sockaddr_in send_addr,recv_addr;
 
     // creating sockfd
     sockfd = socket(AF_INET, SOCK_MRP,0);
@@ -19,12 +22,12 @@ int main(){
         exit(EXIT_FAILURE);
     }
 
-    memset(&recvaddr, 0, sizeof(recvaddr));
+    memset(&recv_addr, 0, sizeof(recv_addr));
 
     // Server info
-    recvaddr.sin_family = AF_INET;
-    recvaddr.sin_port = htons(PORT);
-    recvaddr.sin_addr.s_addr = INADDR_ANY;
+    recv_addr.sin_family = AF_INET;
+    recv_addr.sin_port = htons(PORT);
+    recv_addr.sin_addr.s_addr = INADDR_ANY;
 
     if(r_bind(sockfd, (const struct sockaddr *) &recv_addr, sizeof(recv_addr)) < 0){
 		perror("binding failed");

@@ -1,10 +1,8 @@
 #ifndef _RSOCKET_H
 #define _RSOCKET_H
 
-#include <stdio.h>
 #include <sys/types.h>
 #include <sys/socket.h>
-#include <unistd.h>
 
 #define SOCK_MRP 10018
 #define T 2

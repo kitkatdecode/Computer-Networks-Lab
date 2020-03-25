@@ -1,5 +1,7 @@
 /* S E N D E R */
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include <string.h> 
 #include <rsocket.h> 
 #include <arpa/inet.h> 
@@ -27,12 +29,12 @@ int main(){
 	send_addr.sin_addr.s_addr = INADDR_ANY;
 	send_addr.sin_port = htons(PORT);
 
-    memset(&recvaddr, 0, sizeof(recvaddr));
+    memset(&recv_addr, 0, sizeof(recv_addr));
 
     // receiver's info
-    recvaddr.sin_family = AF_INET;
-    recvaddr.sin_port = htons(RECV_PORT);
-    recvaddr.sin_addr.s_addr = INADDR_ANY;
+    recv_addr.sin_family = AF_INET;
+    recv_addr.sin_port = htons(RECV_PORT);
+    recv_addr.sin_addr.s_addr = INADDR_ANY;
 
 	if(r_bind(sockid, (const struct sockaddr *) &send_addr, sizeof(send_addr)) < 0){
 		perror("binding failed");
@@ -54,10 +56,10 @@ int main(){
     if(msglen>100)
         msglen = 100;
     sendto(sockid, (const char *)msg[0], strlen(msg[0]), 0,
-                    (const struct sockaddr *)&recvaddr, sizeof(recvaddr));
+                    (const struct sockaddr *)&recv_addr, sizeof(recv_addr));
     for(int i=1;i<msglen;i++){
         sendto(sockid, (const char *)msg[i], strlen(msg[i]), 0,
-                    (const struct sockaddr *)&recvaddr, sizeof(recvaddr));
+                    (const struct sockaddr *)&recv_addr, sizeof(recv_addr));
     }
 
     r_close(sockid);
