@@ -1,0 +1,34 @@
+
+1. Transmission Table-->
+
+    ----------------------------------------------------------------------------------
+    | Drop Probability  | Characters in String | Average No of Transmissions per char|
+    ----------------------------------------------------------------------------------
+    |   0.05            |       52             |            1.25                     |
+    |   0.10            |       52             |            1.17                     |
+    |   0.15            |       52             |            1.40                     |
+    |   0.20            |       52             |            1.52                     |
+    |   0.25            |       52             |            1.65                     |
+    |   0.30            |       52             |            1.92                     |
+    |   0.35            |       52             |            2.04                     |
+    |   0.40            |       52             |            2.56                     |
+    |   0.45            |       52             |            3.08                     |
+    |   0.50            |       52             |            3.44                     |
+    ----------------------------------------------------------------------------------
+
+2. Message Formats-->
+
+    a. Transmission message : These are main application messages with data within them
+            Format : 
+            Msg ID (distinct msg id), Msg sock_id (to be used for sending msg --optional)
+            , is_ack flag (set to 0 for transmission packets), data, data_len, dest addr, src addr
+
+    b. Acknowledgement message: No data is sent only Msg ID is sent back and is_ack is set to 1
+
+    c. Retransmission message : same as transmission message with same msg id
+
+3. Data Structures-->
+
+    MRP_Packet: main msg frame containing data, data_len, dest_addr, src_addr
+    Transmit_packet: msg for transmission include Msg_ID, and ACK flag (set to 1 for ACK msg)
+    ack_packet: used to record time for retransmission (with transmit_packet )

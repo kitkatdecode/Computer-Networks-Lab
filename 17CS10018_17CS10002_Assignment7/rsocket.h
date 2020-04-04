@@ -5,17 +5,22 @@
 #include <sys/socket.h>
 
 #define SOCK_MRP 10018
-#define T 2
-#define p 0.05
+#define TP 2    /* retransmission interval  */
+#define DROP_PROB  0.5 /* msg dropping probability */
 #define MAX_MSG_SIZE 100
 #define MAX_TABLE_SIZE 100
 
-int r_socket(int domain, int type, int protocol);
-int r_bind(int sockfd, const struct sockaddr *addr,
-                socklen_t addrlen);
-int r_sendto(int sockfd, const void *buf, size_t len, int flags,
-                      const struct sockaddr *dest_addr, socklen_t addrlen);
-ssize_t r_recvfrom(int sockfd, void *buf, size_t len, int flags,
-                        struct sockaddr *src_addr, socklen_t *addrlen);
-int r_close(int fd);
-int dropMessage(float p);
+/* drop counter for testing */
+int transmissions;
+
+/* Global Functions */
+int r_socket(int, int, int);
+int r_bind(int, const struct sockaddr *, socklen_t);
+size_t r_sendto(int, const void *, size_t, int,
+                      const struct sockaddr *, socklen_t);
+size_t r_recvfrom(int, void *, size_t, int,
+                        struct sockaddr *, socklen_t *);
+int r_close(int);
+int dropMessage(float);
+
+#endif
